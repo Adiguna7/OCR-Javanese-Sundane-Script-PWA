@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="manifest" href="/manifest.json">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" sizes="96x96" href="<%= webpackConfig.output.publicPath %>ocr.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=1, shrink-to-fit=no" name="viewport">
+	<meta name="Description" content="Deskripsi Singkat Situs" />
+	<!-- Mendeklarasikan warna yang muncul pada address bar Chrome versi seluler -->
+	<meta name="theme-color" content="#414f57" />
+
+    <title>OCR Aksara Jawa  dan Sunda</title>
+
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  </head>
+  <body class="sidebar-collapse">
+    <noscript>
+      <strong>Mohon maaf, web ini menggunakan Javascripts. Mohon untuk segera mengaktifkan Javascripts. Terimakasih</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+	<script>
+	if ('serviceWorker' in navigator) {
+     // Proses registrasi Service Worker
+      console.log('CLIENT: Service Worker dalam proses registrasi.');
+     // Service Worker didaftarkan pada sw.js
+     navigator.serviceWorker.register('sw.js').then(function() {
+          // Jika proses pendaftaran berhasil
+          console.log('CLIENT: Service Worker berhasil didaftarkan.');
+     }, function() {
+          // Jika proses pendaftaran Service Worker gagal
+          console.log('CLIENT: Service Worker gagal didaftarkan.');
+     });
+} else {
+     // atau jika Service Worker tidak didukung
+     console.log('CLIENT: Service Worker tidak didukung.');
+}
+</script>
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+</html>
