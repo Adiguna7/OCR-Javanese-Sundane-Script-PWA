@@ -8,14 +8,7 @@
       <nav>
         <ul>
           <li>
-            <a href="">
-              About Us
-            </a>
-          </li>
-          <li>
-            <a href="">
-              Blog
-            </a>
+              WEB APP OCR Aksara Sunda dan Jawa
           </li>
         </ul>
       </nav>

@@ -13,33 +13,6 @@
           <a
             target="_blank"
             href=""
-            class="btn btn-neutral btn-icon btn-twitter btn-round btn-lg"
-            rel="tooltip"
-            title="Follow us"
-          >
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a
-            target="_blank"
-            href=""
-            class="btn btn-neutral btn-icon btn-facebook btn-round btn-lg"
-            rel="tooltip"
-            title="Like us"
-          >
-            <i class="fab fa-facebook-square"></i>
-          </a>
-          <a
-            target="_blank"
-            href=""
-            class="btn btn-neutral btn-icon btn-linkedin btn-lg btn-round"
-            rel="tooltip"
-            title="Follow us"
-          >
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a
-            target="_blank"
-            href=""
             class="btn btn-neutral btn-icon btn-github btn-round btn-lg"
             rel="tooltip"
             title="Star on Github"

@@ -33,13 +33,13 @@
         icon="now-ui-icons users_single-02"
         class="nav-item"
       >
-        <nav-link to="/profil">
+        <nav-link to="/profil_jawa">
           <i class="now-ui-icons education_paper"></i> Aksara Jawa
         </nav-link>
-        <nav-link to="/ocr_sunda">
+        <nav-link to="/profil_sunda">
           <i class="now-ui-icons education_paper"></i> Aksara Sunda
         </nav-link>
-        <nav-link to="/ocr_jawa">
+        <nav-link to="/profil_web">
           <i class="now-ui-icons business_globe"></i> Web
         </nav-link>
       </drop-down>
@@ -47,39 +47,13 @@
         <a
           class="nav-link"
           rel="tooltip"
-          title="Follow us on Twitter"
+          title="Github"
           data-placement="bottom"
           href=""
           target="_blank"
         >
-          <i class="fab fa-twitter"></i>
-          <p class="d-lg-none d-xl-none">Twitter</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          rel="tooltip"
-          title="Like us on Facebook"
-          data-placement="bottom"
-          href=""
-          target="_blank"
-        >
-          <i class="fab fa-facebook-square"></i>
-          <p class="d-lg-none d-xl-none">Facebook</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          rel="tooltip"
-          title="Follow us on Instagram"
-          data-placement="bottom"
-          href=""
-          target="_blank"
-        >
-          <i class="fab fa-instagram"></i>
-          <p class="d-lg-none d-xl-none">Instagram</p>
+          <i class="fab fa-github"></i>
+          <p class="d-lg-none d-xl-none">Github</p>
         </a>
       </li>
     </template>

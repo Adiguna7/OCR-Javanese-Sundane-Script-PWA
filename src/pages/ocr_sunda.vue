@@ -70,6 +70,11 @@
               <n-button type="info" @click.native="modals.classic = true">
               Info
               </n-button>
+              <a href="mailto:aditya0728@gmail.com?subject=Bug Report OCR Aksara Sunda">
+              <n-button type="danger">
+              Report
+              </n-button>
+              </a>
             </div>
           </div>
           <div class="separator separator-primary"></div>
@@ -89,6 +94,20 @@
               >
             </template>
           </modal>
+          <br><br>
+          <div>
+              <span><b>Update</b></span>
+              <blockquote>
+                <p class="blockquote blockquote-primary">
+                 v.1 Beta 1.0: Aksara Sunda dapat terdeteksi akan tetapi masih tergantung scaling ukuran
+                  <br />
+                  <br />
+                  <small>
+                    - AAW
+                  </small>
+                </p>
+              </blockquote>
+            </div>
         </div>
       </div>
     </div>

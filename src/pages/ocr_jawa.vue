@@ -84,6 +84,11 @@
             <n-button type="info" @click.native="modals.classic = true">
             Info
             </n-button>
+              <a href="mailto:suryoadiguna@gmail.com?subject=Bug Report OCR Aksara Jawa">
+              <n-button type="danger">
+              Report
+              </n-button>
+              </a>
           </div>
         </div>
         <div class="separator separator-primary"></div>
@@ -105,15 +110,28 @@
               >
             </template>
         </modal>
+        <br><br>
+        <div>
+              <span><b>Update</b></span>
+              <blockquote>
+                <p class="blockquote blockquote-primary">
+                 v1.alpha telah dirilis versi alpha: OCR dapat mendeteksi aksara Jawa, 
+                 tetapi akurasinya kurang baik
+                  <br />
+                  <br />
+                  <small>
+                    - SA
+                  </small>
+                </p>
+              </blockquote>
+            </div>
       </div>
-       <signup-form></signup-form>
     </div>
   </div>
 </template>
 <script>
 import { Button, Modal } from "@/components";
 import { Tooltip } from 'element-ui';
-import SignupForm from './components/SignupForm';
 var FormData = require("form-data");
 var fs = require("fs");
 export default {
@@ -131,8 +149,7 @@ export default {
   components: {
     Modal,
     [Button.name]: Button,
-    [Tooltip.name]: Tooltip,
-    SignupForm
+    [Tooltip.name]: Tooltip
   },
   mounted() {
     let TTS = document.createElement("script");

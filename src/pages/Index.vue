@@ -1,11 +1,14 @@
 <template>
   <div>
-    <div class="page-header  clear-filter" filter-color="orange">
+    <div class="page-header page-header-small clear-filter" filter-color="orange">
       <parallax
         class="page-header-image"
         style="background-image: url('img/jawa_sunda.png')"
+        position: relative
       >
       </parallax>
+    <div class="wrapper">
+    </div>
       <div class="container">
         <div class="content-center brand">
           <h1 class="h1-seo"><p style="color:white"><b>OCR<br>Aksara Jawa dan Sunda</b></p></h1>
@@ -34,4 +37,10 @@ export default {
   }
 };
 </script>
-<style></style>
+<style>
+.wrapper{
+  width: relative;
+  margin:auto;
+  position:relative;
+}
+</style>
