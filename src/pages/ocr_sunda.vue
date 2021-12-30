@@ -187,8 +187,9 @@ export default {
      if(!hasil || hasil== "\n" )
       {
         this.hasil_ocr = "Aksara Sunda tidak terdeteksi pada image Anda. Mohon diperiksa kembali"
-      }else
-      console.log(hasil);
+      }else{
+        // console.log(hasil);
+      }      
    },
   },
 };

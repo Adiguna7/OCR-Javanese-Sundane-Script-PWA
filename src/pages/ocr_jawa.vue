@@ -71,6 +71,7 @@
               rows="10"
               style="resize:none"
               placeholder="Hasil OCR di sini"
+              disabled
               
             ></textarea>
             <textarea
@@ -123,13 +124,25 @@
         <div>
               <span><b>Update</b></span>
               <blockquote>
-                <p class="blockquote blockquote-primary">
-                 v1.alpha telah dirilis versi alpha: OCR dapat mendeteksi aksara Jawa, 
-                 tetapi akurasinya kurang baik
+                <p class="blockquote blockquote-primary">                  
+                  V.alpha.1.0.0:
+                  <ul>                    
+                    <li>Detection work only on basic character and some of vocal character</li>
+                    <li>Model use my own architecture adapted from resnet50</li>
+                  </ul>
+                  <b>
+                    V.alpha.2.0.0 (Current Version)
+                    <ul>
+                      <li>Detection work on all character of javanese script, But use font "tuladha jejeg"</li>
+                      <li>Can detection multiple languange (Bahasa + Javanese)</li>
+                      <li>Accuracy for some character still bad, Somehow one character detect multiple times</li>
+                      <li>Model use Resnet50 and LTSM</li>
+                    </ul>
+                  </b>
                   <br />
                   <br />
                   <small>
-                    - SA
+                    - Suryo Adiguna
                   </small>
                 </p>
               </blockquote>
@@ -142,7 +155,7 @@
 import { Button, Modal } from "@/components";
 import { Tooltip } from 'element-ui';
 var FormData = require("form-data");
-var fs = require("fs");
+// var fs = require("fs");
 export default {
   data: function() {
     return {
@@ -151,7 +164,107 @@ export default {
       },
       image: "",
       hasil_ocr: "",
-      teks_latin: ""
+      teks_latin: "",
+      java2latn: {
+        "ꦀ":'',//? -- archaic
+        "ꦁ":'ng',//cecak
+        "ꦂ":'r',//layar
+        "ꦃ":'h',//wignyan
+        "ꦄ":'A',//swara-A
+        "ꦅ":'I',//I-Kawi -- archaic
+        "ꦆ":'I',//I
+        "ꦇ":'Ii',//Ii -- archaic
+        "ꦈ":'U',//U
+        "ꦉ":'rê',//pa cêrêk
+        "ꦊ":'lê',//nga lêlêt
+        "ꦋ":'lêu',//nga lêlêt Raswadi -- archaic
+        "ꦌ":'E',//E
+        "ꦍ":'Ai',//Ai
+        "ꦎ":'O',//O
+        
+        "ꦏ":'ka',
+        "ꦐ":'qa',//Ka Sasak
+        "ꦑ":'kʰa',//Murda
+        "ꦒ":'ga',
+        "ꦓ":'gʰa',//Murda
+        "ꦔ":'nga',//ṅa
+        "ꦕ":'ca',
+        "ꦖ":'cʰa',//Murda
+        "ꦗ":'ja',
+        "ꦘ":'Nya',//Ja Sasak, Nya Murda
+        "ꦙ":'jʰa',//Ja Mahaprana
+        "ꦚ":'nya',//ña 
+        "ꦛ":'tha',//'ṭa',
+        "ꦜ":'ṭʰa',//Murda
+        "ꦝ":'dha',//'ḍa',
+        "ꦞ":'ḍʰa',//Murda
+        "ꦟ":'ṇa',//Murda
+        "ꦠ":'ta',
+        "ꦡ":'ṭa',//Murda
+        "ꦢ":'da',
+        "ꦣ":'ḍa',//Murda
+        "ꦤ":'na',
+        "ꦥ":'pa',
+        "ꦦ":'pʰa',//Murda
+        "ꦧ":'ba',
+        "ꦨ":'bʰa',//Murda
+        "ꦩ":'ma',
+        "ꦪ":'ya',
+        "ꦫ":'ra',
+        "ꦬ":'Ra',//Ra Agung
+        "ꦭ":'la',
+        "ꦮ":'wa',
+        "ꦯ":'śa',//Murda
+        "ꦰ":'ṣa',//Sa Mahaprana
+        "ꦱ":'sa',
+        "ꦲ":'ha',//could also be "a" or any sandhangan swara
+        
+        "꦳":'​',//cecak telu -- diganti zero-width joiner (tmp)
+        "ꦺꦴ":'o',//taling tarung
+        "ꦴ":'a',
+        "ꦶ":'i',
+        "ꦷ":'ii',
+        "ꦸ":'u',
+        "ꦹ":'uu',
+        "ꦺ":'e',
+        "ꦻ":'ai',
+        "ꦼ":'ê',
+        "ꦽ":'rê',
+        "ꦾ":'ya',
+        "ꦿ":'ra',
+        
+        "꧀":'​',//pangkon -- diganti zero-width joiner (tmp)
+        
+        "꧁":'—',
+        "꧂":'—',
+        "꧃":'–',
+        "꧄":'–',
+        "꧅":'–',
+        "꧆":'',
+        "꧇":'​',//titik dua -- diganti zero-width joiner (tmp)
+        "꧈":',',
+        "꧉":'.',
+        "꧊":'qqq',
+        "꧋":'–',
+        "꧌":'–',
+        "꧍":'–',
+        "ꧏ":'²',
+        "꧐":'0',
+        "꧑":'1',
+        "꧒":'2',
+        "꧓":'3',
+        "꧔":'4',
+        "꧕":'5',
+        "꧖":'6',
+        "꧗":'7',
+        "꧘":'8',
+        "꧙":'9',
+        "꧞":'—',
+        "꧟":'—',
+        "​":'#',//zero-width joiner
+        "​":' '//zero-width space
+      },
+      trans: null,
     };
   },
   name: "landing",
@@ -195,9 +308,10 @@ export default {
     removeImage: function(e) {
       this.image = "";
       this.hasil_ocr = "";
+      this.teks_latin = "";
     },
     async upload(e) {
-      const URL = "http://192.168.8.100:8000/image/upload";
+      const URL = "http://localhost:8000/image/upload";
       let data = new FormData();
       data.append("name", "my-picture");
       data.append("file", e);
@@ -215,12 +329,159 @@ export default {
        if(!hasil || hasil== "\n" )
       {
         this.hasil_ocr = "Aksara Jawa tidak terdeteksi pada image Anda. Mohon diperiksa kembali"
-      }else
-      console.log(hasil);
-      const hc = require('hanacaraka');
-      const latin = hc.decode(hasil_ocr);
-      this.teks_latin = latin;
+      }else{
+        const latin = this.transliterate(hasil)
+        this.teks_latin = latin;
+      }
+      // console.log(this.java2latn["ꦁ"]);
+      // const hc = require('hanacaraka');      
     },
+    ganti(index, character) {
+       return this.trans.substr(0, index) + character;// + this.substr(index+character.length);
+    },
+    ganti2(index, character) {
+       return this.trans.substr(0, index-1) + character;// + this.substr(index+character.length);
+    },
+    ganti3(index, character) {
+       return this.trans.substr(0, index-2) + character;// + this.substr(index+character.length);
+    },
+    capitalize(){
+        return this.trans.charAt(0).toUpperCase() + this.trans.slice(1);
+    },
+    transliterate(aksara) {
+            
+      const str = aksara;        
+  
+      this.trans = str;
+      for (var i = 0, j = 0; i < str.length; i++) {
+          if (!this.java2latn[str[i]]) { //not Aksara Jawa
+          this.trans = this.ganti(j, str[i]);j++;
+        } else {
+          /*if (str[i] == "ꦲ") { //ha
+            /*if ( i > 0 && (str[i-1] == "ꦼ" || str[i-1] == "ꦺ" || str[i-1] == "ꦶ" || str[i-1] == "ꦴ" || str[i-1] == "ꦸ" || str[i-1] == "ꦄ" || str[i-1] == "ꦌ" || str[i-1] == "ꦆ" || str[i-1] == "ꦎ" || str[i-1] == "ꦈ" || 
+            str[i-1] == "ꦿ" || str[i-1] == "ꦾ" || str[i-1] == "ꦽ") ) { 
+                this.trans = this.ganti(j, "h"+this.java2latn[str[i]]);j+=2; 
+            }
+            if ( i > 0 && (str[i-1] == "꧊") ) { 
+                this.trans = this.ganti(j, "H"+this.java2latn[str[i]]);j+=2; 
+            } else { 
+                this.trans = this.ganti(j, this.java2latn[str[i]]);j++; 
+            //}
+          } else */if (i > 0 && str[i] == "ꦫ" && str[i-1] == "ꦂ") { //double rr
+            this.trans = this.ganti(j, "a");j++;
+          } else if (i > 0 && str[i] == "ꦔ" && str[i-1] == "ꦁ") { //double ngng
+            this.trans = this.ganti(j, "a");j++;
+          } else if (str[i] == "ꦴ" || str[i] == "ꦶ" || str[i] == "ꦸ" || str[i] == "ꦺ" || str[i] == "ꦼ") {
+            if (i > 2 && str[i-1] == "ꦲ" && str[i-2] == "ꦲ") { //-hah-
+              if (str[i] == "ꦴ") this.trans = this.ganti3(j,"ā"); 
+              else if (str[i] == "ꦶ") this.trans = this.ganti3(j,"ai"); 
+              else if (str[i] == "ꦸ") this.trans = this.ganti3(j,"au"); 
+              else if (str[i] == "ꦺ") this.trans = this.ganti3(j,"ae"); 
+              else if (str[i] == "ꦼ") this.trans = this.ganti3(j,"aě"); 
+              //str[i] == "ꦶ" || str[i] == "ꦸ" || str[i] == "ꦺ" || str[i] == "ꦼ"
+            } 
+            else if (i > 2 && str[i-1] == "ꦲ") { //-h-
+              if (str[i] == "ꦴ") this.trans = this.ganti2(j,"ā"); 
+              else if (str[i] == "ꦶ") this.trans = this.ganti2(j,"i"); 
+              else if (str[i] == "ꦸ") this.trans = this.ganti2(j,"u");
+              else if (str[i] == "ꦺ") this.trans = this.ganti2(j,"e"); 
+              else if (str[i] == "ꦼ") this.trans = this.ganti2(j,"ě"); 
+  //11-02            j--;
+              //str[i] == "ꦶ" || str[i] == "ꦸ" || str[i] == "ꦺ" || str[i] == "ꦼ"
+            }
+            else /**/if (i > 0 && str[i] == "ꦴ" && str[i-1] == "ꦺ") //-o //2 aksara -> 1 huruf
+              { this.trans = this.ganti2(j, "o"); }
+            else if (i > 0 && str[i] == "ꦴ" && str[i-1] == "ꦻ") //-au //2 aksara -> 2 huruf
+              { this.trans = this.ganti3(j, "au"); }
+            else if (str[i] == "ꦴ") //-aa
+              { this.trans = this.ganti(j, "aa"); j++; }
+            else if ( i > 0 && (str[i] == "ꦶ" || str[i] == "ꦸ" || str[i] == "ꦺ" || str[i] == "ꦼ") && (str[i-1] == "ꦄ" || str[i-1] == "ꦌ" || str[i-1] == "ꦆ" || str[i-1] == "ꦎ" || str[i-1] == "ꦈ") )
+              { this.trans = this.ganti(j, this.java2latn[str[i]]); j++; }
+            else 
+              { this.trans = this.ganti2(j, this.java2latn[str[i]]); }
+          } else if (str[i] == "ꦽ" || str[i] == "ꦾ" || str[i] == "ꦿ" || str[i] == "ꦷ" || str[i] == "ꦹ" || str[i] == "ꦻ" || str[i] == "ꦇ" || str[i] == "ꦍ") { //1 aksara -> 2 huruf
+            this.trans = this.ganti2(j, this.java2latn[str[i]]);j++;
+          } else if (str[i] == "꦳") {//2 aksara -> 2 huruf
+            if (i > 0 && str[i-1] == "ꦗ") { 
+              if (i > 1 && str[i-2] == "꧊") { this.trans = this.ganti3(j, "Za"); }
+              else { this.trans = this.ganti3(j, "za"); } }
+            else if (i > 0 && str[i-1] == "ꦥ") { 
+              if (i > 1 && str[i-2] == "꧊") { this.trans = this.ganti3(j, "Fa"); }
+              else { this.trans = this.ganti3(j, "fa"); } }
+            else if (i > 0 && str[i-1] == "ꦮ") { 
+              if (i > 1 && str[i-2] == "꧊") { this.trans = this.ganti3(j, "Va"); }
+              else { this.trans = this.ganti3(j, "va"); } }//catatan, "va" biasanya ditulis sama dengan "fa" (dengan pa+cecak telu), variannya adalah wa+cecak telu.
+            else { this.trans = this.ganti2(j, this.java2latn[str[i]]); }
+          } else if (str[i] == "꧀") {
+            this.trans = this.ganti2(j, this.java2latn[str[i]]);
+          } else if (i > 1 && str[i] == "ꦕ" &&  str[i-1] == "꧀" &&  str[i-2] == "ꦚ") { //nyj & nyc
+            this.trans = this.ganti2(j-2, "nc");
+          } else if (i > 1 && str[i] == "ꦗ" &&  str[i-1] == "꧀" &&  str[i-2] == "ꦚ") { //nyj & nyc
+            this.trans = this.ganti2(j-2, "nj");
+          } else if (str[i] == "ꦏ" || str[i] == "ꦐ" || str[i] == "ꦑ" || str[i] == "ꦒ" || str[i] == "ꦓ" || str[i] == "ꦕ" || str[i] == "ꦖ" || str[i] == "ꦗ" || str[i] == "ꦙ" || str[i] == "ꦟ" || str[i] == "ꦠ" || str[i] == "ꦡ" || str[i] == "ꦢ" || str[i] == "ꦣ" || str[i] == "ꦤ" || str[i] == "ꦥ" || str[i] == "ꦦ" || str[i] == "ꦧ" || str[i] == "ꦨ" || str[i] == "ꦩ" || str[i] == "ꦪ" || str[i] == "ꦫ" || str[i] == "ꦬ" || str[i] == "ꦭ" || str[i] == "ꦮ" || str[i] == "ꦯ" || str[i] == "ꦱ" || str[i] == "ꦉ" || str[i] == "ꦊ" || str[i] == "ꦁ" || str[i] == "ꦲ") {
+            if (i > 0 && str[i-1] == "꧊") {
+              if (str[i] == "ꦐ") { this.trans = this.ganti(j, "Qa");j+=2; }
+              else if (str[i] == "ꦧ" || str[i] == "ꦨ") { this.trans = this.ganti(j, "Ba");j+=2; }
+              else if (str[i] == "ꦕ" || str[i] == "ꦖ") { this.trans = this.ganti(j, "Ca");j+=2; }
+              else if (str[i] == "ꦢ" || str[i] == "ꦣ") { this.trans = this.ganti(j, "Da");j+=2; }
+              else if (str[i] == "ꦒ" || str[i] == "ꦓ") { this.trans = this.ganti(j, "Ga");j+=2; }
+              else if (str[i] == "ꦲ") { 
+                    if ( i > 0 && (str[i-1] == "ꦼ" || str[i-1] == "ꦺ" || str[i-1] == "ꦶ" || str[i-1] == "ꦴ" || str[i-1] == "ꦸ" || str[i-1] == "ꦄ" || str[i-1] == "ꦌ" || str[i-1] == "ꦆ" || str[i-1] == "ꦎ" || str[i-1] == "ꦈ" || 
+                    str[i-1] == "ꦿ" || str[i-1] == "ꦾ" || str[i-1] == "ꦽ") ) { 
+                        this.trans = this.ganti(j, "h"+this.java2latn[str[i]]);j+=2; 
+                    }
+                    if ( i > 0 && (str[i-1] == "꧊") ) { 
+                        this.trans = this.ganti(j, "H"+this.java2latn[str[i]]);j+=2; 
+                    } else { 
+                        this.trans = this.ganti(j, "@"+this.java2latn[str[i]]);j+=2; 
+                    }
+                  //this.trans = this.ganti(j, "Ha");j+=2; 
+              }
+              else if (str[i] == "ꦗ" || str[i] == "ꦙ") { this.trans = this.ganti(j, "Ja");j+=2; }
+              else if (str[i] == "ꦏ" || str[i] == "ꦑ") { this.trans = this.ganti(j, "Ka");j+=2; }
+              else if (str[i] == "ꦭ") { this.trans = this.ganti(j, "La");j+=2; }
+              else if (str[i] == "ꦩ") { this.trans = this.ganti(j, "Ma");j+=2; }
+              else if (str[i] == "ꦤ" || str[i] == "ꦟ") { this.trans = this.ganti(j, "Na");j+=2; }
+              else if (str[i] == "ꦥ" || str[i] == "ꦦ") { this.trans = this.ganti(j, "Pa");j+=2; }
+              else if (str[i] == "ꦫ" || str[i] == "ꦬ") { this.trans = this.ganti(j, "Ra");j+=2; }
+              else if (str[i] == "ꦱ" || str[i] == "ꦯ") { this.trans = this.ganti(j, "Sa");j+=2; }
+              else if (str[i] == "ꦠ" || str[i] == "ꦡ") { this.trans = this.ganti(j, "Ta");j+=2; }
+              else if (str[i] == "ꦮ") { this.trans = this.ganti(j, "Wa");j+=2; }
+              else if (str[i] == "ꦪ") { this.trans = this.ganti(j, "Ya");j+=2; }
+              else { this.ganti(j, this.java2latn[str[i]]);j+=3; }
+            } else if (str[i] == "ꦑ" || str[i] == "ꦓ" || str[i] == "ꦖ" || str[i] == "ꦙ" || str[i] == "ꦡ" || str[i] == "ꦣ" || str[i] == "ꦦ" || str[i] == "ꦨ" || str[i] == "ꦯ") {//bha, cha, dha, dll.
+              this.trans = this.ganti(j, this.java2latn[str[i]]);j+=3;
+            } else if (str[i] == "ꦲ" && (i == 0 || [" ", "​", "꧀", "꦳", "ꦴ", "ꦶ", "ꦷ", "ꦸ", "ꦹ", "ꦺ", "ꦻ", "ꦼ", "ꦽ", "ꦾ", "ꦿ"].indexOf(str[i-1]) >= 0)) { //ha, preceeded by space or zws or open vowel
+                this.trans = this.ganti(j, "_a");j+=2; 
+            } else {//ba, ca, da, dll.
+              this.trans = this.ganti(j, this.java2latn[str[i]]);j+=2; }
+          } else if (str[i] == "ꦰ") { //ṣa
+            this.trans = this.ganti(j, this.java2latn[str[i]]);j+=2;
+          } else if (str[i] == "ꦔ" || str[i] == "ꦘ" || str[i] == "ꦚ" || str[i] == "ꦛ" || str[i] == "ꦜ" || str[i] == "ꦝ" || str[i] == "ꦞ" || str[i] == "ꦋ") {
+            if (i > 0 && str[i-1] == "꧊") {
+              if (str[i] == "ꦔ") { this.trans = this.ganti(j, "Nga");j+=3; }
+              else if (str[i] == "ꦚ" || str[i] == "ꦘ") { this.trans = this.ganti(j, "Nya");j+=3; }
+              else if (str[i] == "ꦛ" || str[i] == "ꦜ") { this.trans = this.ganti(j, "Tha");j+=3; }
+              else if (str[i] == "ꦝ" || str[i] == "ꦞ") { this.trans = this.ganti(j, "Dha");j+=3; }
+              else { this.ganti(j, this.java2latn[str[i]]);j+=3; }
+            } else {
+              this.trans = this.ganti(j, this.java2latn[str[i]]);j+=3; }
+          /*} else if (str[i] == "꧈" || str[i] == "꧉") { // habis titik atau koma diberi spasi
+            this.trans = this.ganti(j, this.java2latn[str[i]]+" ");j+=2;*/
+          } else if (str[i] == "꧊") { //penanda nama diri -- made up for Latin back-compat
+            this.trans = this.ganti(j, "");
+          } else if (str[i] == " ") {
+            this.trans = this.ganti(j, " ");j++;
+          } else {
+            this.trans = this.ganti(j, this.java2latn[str[i]]);j++;
+            //this.trans = this.ganti(j, "@");j++;
+          }
+  
+        }
+      }
+  
+      return this.trans;
+    }
   },
 };
 </script>
