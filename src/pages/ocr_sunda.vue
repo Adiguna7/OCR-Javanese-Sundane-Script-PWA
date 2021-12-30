@@ -67,14 +67,22 @@
               >
               <n-button type="primary" @click="play()"><b>Play</b></n-button>
               </el-tooltip>
-              <n-button type="info" @click.native="modals.classic = true">
-              Info
-              </n-button>
+              <el-tooltip
+              class="item"
+              content="Informasi Aksara"
+              placement="bottom"
+              >
+              <n-button type="info" @click.native="modals.classic = true">Info</n-button>
+              </el-tooltip>
+              <el-tooltip
+              class="item"
+              content="Report bug"
+              placement="right"
+              >
               <a href="mailto:aditya0728@gmail.com?subject=Bug Report OCR Aksara Sunda">
-              <n-button type="danger">
-              Report
-              </n-button>
+              <n-button type="danger">Report</n-button>
               </a>
+              </el-tooltip>
             </div>
           </div>
           <div class="separator separator-primary"></div>

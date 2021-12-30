@@ -28,29 +28,38 @@
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto text-center">
             <h2 class="title">OCR Aksara Jawa</h2>
-            <!-- <label for="myfile"><b>Select a file:</b></label> -->
             <br />
             <div id="app">
               <div v-if="!image">
+                <div class="text-center">
+                  <p class="category">Pilih Jenis Masukan</p>
+                <div class="center">
+                  <n-radio v-model="radios" label="Aksara Jawa">Full Aksara Jawa</n-radio>
+                  <n-radio v-model="radios" label="Aksara Jawa + Indonesia">Aksara Jawa + Indonesia</n-radio>
+                </div>
+                </div>
+                <br />
                 <h2>Select an Image</h2>
                 <input
                   type="file"
                   accept=".jpeg, .jpg, .png"
                   @change="onFileChange"
                   style="border: 1px solid #ccc;
-                display: inline-block;
-                padding: 6px 12px;
-                cursor: pointer;"
-                />
+                    display: inline-block;
+                    padding: 6px 12px;
+                    cursor: pointer;"
+                  />
               </div>
               <div v-else>
                 <img
                   :src="image"
                   style="border: 2px solid #000;
-                display: inline-block;
-                width: 410px;
-                padding: 6px 12px;"
-                />
+                    display: inline-block;
+                    width: 410px;
+                    padding: 6px 12px;"
+                 />
+                <br />
+                <span>Jenis Masukan: <b>{{ radios }}</b></span>
                 <br />
                 <el-tooltip
                    class="item"
@@ -72,7 +81,6 @@
               style="resize:none"
               placeholder="Hasil OCR di sini"
               disabled
-              
             ></textarea>
             <textarea
               id="teks_latin"
@@ -91,14 +99,22 @@
             >
             <n-button  type="success" @click="play()"><b>Play</b></n-button>
             </el-tooltip>
-            <n-button type="info" @click.native="modals.classic = true">
-            Info
-            </n-button>
+            <el-tooltip
+              class="item"
+              content="Informasi Aksara"
+              placement="bottom"
+            >
+            <n-button type="info" @click.native="modals.classic = true">Info</n-button>
+            </el-tooltip>
+            <el-tooltip
+              class="item"
+              content="Report bug"
+              placement="right"
+            >
               <a href="mailto:suryoadiguna@gmail.com?subject=Bug Report OCR Aksara Jawa">
-              <n-button type="danger">
-              Report
-              </n-button>
+              <n-button type="danger">Report</n-button>
               </a>
+            </el-tooltip>
           </div>
         </div>
         <div class="separator separator-primary"></div>
@@ -152,7 +168,7 @@
   </div>
 </template>
 <script>
-import { Button, Modal } from "@/components";
+import { Button, Modal, Radio } from "@/components";
 import { Tooltip } from 'element-ui';
 var FormData = require("form-data");
 // var fs = require("fs");
@@ -162,6 +178,7 @@ export default {
       modals: {
         classic: false
       },
+      radios: 'Aksara Jawa',
       image: "",
       hasil_ocr: "",
       teks_latin: "",
@@ -272,7 +289,8 @@ export default {
   components: {
     Modal,
     [Button.name]: Button,
-    [Tooltip.name]: Tooltip
+    [Tooltip.name]: Tooltip,
+    [Radio.name]: Radio
   },
   mounted() {
     let TTS = document.createElement("script");
@@ -311,7 +329,13 @@ export default {
       this.teks_latin = "";
     },
     async upload(e) {
-      const URL = "http://localhost:8000/image/upload";
+      let URL = null;
+      if(this.radios=="Aksara Jawa")
+      {
+        URL = "http://20.205.121.244:8080/image/upload?lang=jav2";
+      }else{
+        URL = "http://20.205.121.244:8080/image/upload?lang=jav2%2Bind";
+      }
       let data = new FormData();
       data.append("name", "my-picture");
       data.append("file", e);
