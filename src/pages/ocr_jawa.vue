@@ -33,10 +33,12 @@
               <div v-if="!image">
                 <div class="text-center">
                   <p class="category">Pilih Jenis Masukan</p>
-                <div class="center">
-                  <n-radio v-model="radios" label="Aksara Jawa">Full Aksara Jawa</n-radio>
-                  <n-radio v-model="radios" label="Aksara Jawa + Indonesia">Aksara Jawa + Indonesia</n-radio>
-                </div>
+                  <div class="center d-flex justify-content-center">
+                    <div>
+                      <n-radio class="text-left" v-model="radios" label="Aksara Jawa">Full Aksara Jawa</n-radio>
+                      <n-radio class="text-left" v-model="radios" label="Aksara Jawa + Indonesia">Aksara Jawa + Indonesia</n-radio>
+                    </div>
+                  </div>
                 </div>
                 <br />
                 <h2>Select an Image</h2>

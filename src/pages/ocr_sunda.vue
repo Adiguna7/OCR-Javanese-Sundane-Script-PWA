@@ -177,7 +177,7 @@ export default {
       this.hasil_ocr ='';
     },
     async upload(e) {
-    const URL = 'http://192.168.8.100:7000/file/string/'; 
+    const URL = 'http://20.205.121.244:8080/api/sunda/string/'; 
     let data = new FormData();
     data.append('name', 'my-picture');
     data.append('file', e); 
