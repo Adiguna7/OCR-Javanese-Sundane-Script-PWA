@@ -71,6 +71,15 @@
               rows="10"
               style="resize:none"
               placeholder="Hasil OCR di sini"
+              
+            ></textarea>
+            <textarea
+              id="teks_latin"
+              v-model="teks_latin"
+              cols="38"
+              rows="10"
+              style="resize:none"
+              placeholder="Hasil Aksara Latin di sini"
               disabled="true"
             ></textarea>
             <br>
@@ -142,6 +151,7 @@ export default {
       },
       image: "",
       hasil_ocr: "",
+      teks_latin: ""
     };
   },
   name: "landing",
@@ -207,6 +217,9 @@ export default {
         this.hasil_ocr = "Aksara Jawa tidak terdeteksi pada image Anda. Mohon diperiksa kembali"
       }else
       console.log(hasil);
+      const hc = require('hanacaraka');
+      const latin = hc.decode(hasil_ocr);
+      this.teks_latin = latin;
     },
   },
 };

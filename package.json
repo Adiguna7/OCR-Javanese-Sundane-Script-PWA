@@ -11,6 +11,7 @@
     "axios": "^0.24.0",
     "babel-eslint": "^10.1.0",
     "bootstrap": "^4.5.0",
+    "carakanjs": "^1.1.2",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "element-ui": "^2.13.2",
@@ -19,6 +20,7 @@
     "express": "^4.17.1",
     "firebase": "^9.6.1",
     "form-data": "^4.0.0",
+    "hanacaraka": "^0.2.0",
     "nouislider": "^14.6.0",
     "serve-static": "^1.10.0",
     "vue": "^2.6.11",
@@ -28,7 +30,7 @@
     "vue-router": "^3.3.4",
     "vue2-transitions": "^0.3.0",
     "workbox-cli": "^6.4.2",
-    "workbox-webpack-plugin": "^6.3.0"
+    "workbox-webpack-plugin": "^6.4.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.4.6",
