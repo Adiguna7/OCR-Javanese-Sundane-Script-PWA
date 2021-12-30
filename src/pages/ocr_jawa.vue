@@ -171,7 +171,7 @@ export default {
   },
   methods: {
     async play() {
-      var ocr = document.getElementById("hasil_ocr").value;
+      var ocr = document.getElementById("teks_latin").value;
       if (ocr) {
         responsiveVoice.setDefaultVoice("Indonesian Female");
         responsiveVoice.speak(ocr);
