@@ -145,8 +145,10 @@
         <p>Font yang digunakan untuk OCR ini adalah Tuladha Jejeg oleh R.S. Wihananto 
           yang dapat didownload di <a href="https://trawaca.id/ocrjawa/fonts/TuladhaJejeg_gr.ttf">sini</a></p>
         <span><b>Gambar yang telah dites (klik gambar untuk mengunduh)</b></span>
-        <carousel-section></carousel-section>
         <br>
+        <br>
+        <br>
+        <carousel-section></carousel-section>
         </div>
         <div>
           <h4 class="title">Update</h4>
