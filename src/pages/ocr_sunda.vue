@@ -104,7 +104,7 @@
           </modal>
           <br><br>
           <div>
-              <span><b>Update</b></span>
+              <h4 class="title">Update</h4>
               <blockquote>
                 <p class="blockquote blockquote-primary">
                  v.1 Beta 1.0: Aksara Sunda dapat terdeteksi akan tetapi masih tergantung scaling ukuran

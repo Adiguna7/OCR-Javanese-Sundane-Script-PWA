@@ -140,7 +140,18 @@
         </modal>
         <br><br>
         <div>
-              <span><b>Update</b></span>
+        <h3 class="title">Resources</h3>
+        <span><b>Font yang digunakan</b></span>
+        <p>Font yang digunakan untuk OCR ini adalah Tuladha Jejeg oleh R.S. Wihananto 
+          yang dapat didownload di <a href="https://trawaca.id/ocrjawa/fonts/TuladhaJejeg_gr.ttf">sini</a></p>
+        <span><b>Gambar yang telah dites (klik gambar untuk mengunduh)</b></span>
+        <br>
+        <br>
+        <br>
+        <carousel-section></carousel-section>
+        </div>
+        <div>
+          <h4 class="title">Update</h4>
               <blockquote>
                 <p class="blockquote blockquote-primary">                  
                   V.alpha.1.0.0:
@@ -171,6 +182,7 @@
 </template>
 <script>
 import { Button, Modal, Radio } from "@/components";
+import CarouselSection from './components/CarouselSection';
 import { Tooltip } from 'element-ui';
 var FormData = require("form-data");
 // var fs = require("fs");
@@ -292,7 +304,8 @@ export default {
     Modal,
     [Button.name]: Button,
     [Tooltip.name]: Tooltip,
-    [Radio.name]: Radio
+    [Radio.name]: Radio,
+    CarouselSection
   },
   mounted() {
     let TTS = document.createElement("script");
