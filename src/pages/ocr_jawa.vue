@@ -347,9 +347,9 @@ export default {
       let URL = null;
       if(this.radios=="Aksara Jawa")
       {
-        URL = "http://20.205.121.244:8080/image/upload?lang=jav2";
+        URL = "https://webocr.eastasia.cloudapp.azure.com:8080/image/upload?lang=jav2";
       }else{
-        URL = "http://20.205.121.244:8080/image/upload?lang=jav2%2Bind";
+        URL = "https://webocr.eastasia.cloudapp.azure.com:8080/image/upload?lang=jav2%2Bind";
       }
       let data = new FormData();
       data.append("name", "my-picture");
