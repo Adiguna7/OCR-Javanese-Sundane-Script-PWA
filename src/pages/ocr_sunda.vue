@@ -1,5 +1,7 @@
 <template>
     <div>
+      <div id="ocrSunda">
+      <div class="loader" v-if="loading"></div>
       <div class="page-header page-header-small clear-filter" filter-color="orange">
         <parallax
           class="page-header-image"
@@ -27,6 +29,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-8 ml-auto mr-auto text-center">
+              <fieldset :disabled="loading">
               <h2 class="title">OCR Aksara Sunda</h2>
               <!-- <label for="myfile"><b>Select a file:</b></label> -->
               <br>
@@ -83,6 +86,7 @@
               <n-button type="danger">Report</n-button>
               </a>
               </el-tooltip>
+              </fieldset>
             </div>
           </div>
           <div class="separator separator-primary"></div>
@@ -119,6 +123,7 @@
         </div>
       </div>
     </div>
+    </div>
 </template>
 <script>
 import { Button, Modal } from '@/components';
@@ -126,8 +131,10 @@ import { Tooltip } from 'element-ui';
 var FormData = require('form-data');
 var fs = require('fs');
 export default {
+  name: 'form-loading-spinner-example',
   data: function() {
       return {
+        loading: false,
         modals: {
         classic: false
         },
@@ -177,6 +184,7 @@ export default {
       this.hasil_ocr ='';
     },
     async upload(e) {
+    this.loading = true
     const URL = 'https://webocr.eastasia.cloudapp.azure.com:8080/api/sunda/string/'; 
     let data = new FormData();
     data.append('name', 'my-picture');
@@ -191,15 +199,34 @@ export default {
     const response = await fetch(URL, config);
     const responsedata = await response.json();
     var hasil = responsedata["OCR STRING"];
-    this.hasil_ocr = hasil;
+    this.loading =  false;
      if(!hasil || hasil== "\n" )
       {
         this.hasil_ocr = "Aksara Sunda tidak terdeteksi pada image Anda. Mohon diperiksa kembali"
       }else{
-        // console.log(hasil);
+        this.hasil_ocr = hasil;
       }      
    },
   },
 };
 </script>
-<style></style>
+<style scoped>
+#ocrSunda{  /* Components Root Element ID */
+    position: relative;
+}
+.loader{  /* Loader Div Class */
+    position: absolute;
+    top:0px;
+    right:0px;
+    width:100%;
+    height:100%;
+    background-color:#eceaea;
+    background-image: url('../../public/img/loader.gif');
+    background-size: 200px;
+    background-repeat:no-repeat;
+    background-position:center;
+    z-index:10000000;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+</style>
