@@ -12,7 +12,7 @@
         <div class="text-center col-md-12 col-lg-8">
           <a
             target="_blank"
-            href=""
+            href="https://github.com/Adiguna7/OCR-Javanese-Sundane-Script-PWA"
             class="btn btn-neutral btn-icon btn-github btn-round btn-lg"
             rel="tooltip"
             title="Star on Github"
