@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="page-header clear-filter" filter-color="orange">
+    <div class="page-header page-header-small clear-filter" filter-color="orange">
       <parallax
         class="page-header-image"
         style="background-image:url('img//bg_sunda.jpg')"
@@ -12,15 +12,13 @@
         </div>
         <h3 class="title">Alif Aditya Wicaksono</h3>
         <p class="category">Student</p>
-        <div class="content">
-          <div class="social-description">
-            <i class="now-ui-icons ui-1_email-85"></i><a href="mailto:aditya0728@gmail.com?subject=Pertanyaan Seputar OCR Aksara Sunda">aditya0728@gmail.com</a>
-          </div>
-        </div>
       </div>
     </div>
     <div class="section">
       <div class="container">
+        <div class="button-container">
+          <a href="mailto:aditya0728@gmail.com?subject=Pertanyaan Seputar OCR Aksara Sunda" class="btn btn-primary btn-round btn-lg">Contact Me</a>
+        </div>
         <h3 class="title">Tentang Saya</h3>
         <h5 class="description">
           Seorang mahasiswa Teknik Komputer ITS yang tertarik pada hardware dan coding.

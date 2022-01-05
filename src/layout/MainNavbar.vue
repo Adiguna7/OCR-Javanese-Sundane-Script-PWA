@@ -49,7 +49,7 @@
           rel="tooltip"
           title="Github"
           data-placement="bottom"
-          href=""
+          href="https://github.com/Adiguna7/OCR-Javanese-Sundane-Script-PWA"
           target="_blank"
         >
           <i class="fab fa-github"></i>

@@ -12,14 +12,8 @@
           <div class="container">
             <h1 class="title">OCR Aksara Sunda</h1>
             <div class="text-center">
-              <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                <i class="fab fa-facebook-square"></i>
-              </a>
-              <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                <i class="fab fa-google-plus"></i>
+              <a href="https://github.com/Adiguna7/OCR-Javanese-Sundane-Script-API" class="btn btn-primary btn-icon btn-round">
+                <i class="fab fa-github-square"></i>
               </a>
             </div>
           </div>
@@ -115,7 +109,7 @@
                   <br />
                   <br />
                   <small>
-                    - AAW
+                    - Alif Aditya Wicaksono
                   </small>
                 </p>
               </blockquote>
@@ -215,7 +209,7 @@ export default {
     position: relative;
 }
 .loader{  /* Loader Div Class */
-    position: absolute;
+    position: fixed;
     top:0px;
     right:0px;
     width:100%;

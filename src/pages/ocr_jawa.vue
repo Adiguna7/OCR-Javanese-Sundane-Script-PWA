@@ -12,14 +12,8 @@
         <div class="container">
           <h1 class="title">OCR Aksara Jawa</h1>
           <div class="text-center">
-            <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-              <i class="fab fa-facebook-square"></i>
-            </a>
-            <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-              <i class="fab fa-google-plus"></i>
+            <a href="https://github.com/Adiguna7/OCR-Javanese-Sundane-Script-API" class="btn btn-primary btn-icon btn-round">
+              <i class="fab fa-github-square"></i>
             </a>
           </div>
         </div>
@@ -538,16 +532,16 @@ export default {
     position: relative;
 }
 .loader{  /* Loader Div Class */
-    position: absolute;
+    position: fixed;
     top:0px;
     right:0px;
     width:100%;
     height:100%;
     background-color:#eceaea;
     background-image: url('../../public/img/loader.gif');
-    background-size: 200px;
+    background-size: 250px;
     background-repeat:no-repeat;
-    background-position:center;
+    background-position: center;
     z-index:10000000;
     opacity: 0.4;
     filter: alpha(opacity=40);

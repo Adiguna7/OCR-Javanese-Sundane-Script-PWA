@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="page-header clear-filter" filter-color="orange">
+    <div class="page-header page-header-small clear-filter" filter-color="orange">
       <parallax
         class="page-header-image"
         style="background-image:url('img/bg_jawa.jpg')"
@@ -12,15 +12,13 @@
         </div>
         <h3 class="title">Suryo Adiguna</h3>
         <p class="category">Student</p>
-        <div class="content">
-          <div class="social-description">
-            <i class="now-ui-icons ui-1_email-85"></i><a href="mailto:suryoadiguna@gmail.com?subject=Pertanyaan Seputar OCR Aksara Jawa">suryoadiguna@gmail.com</a>
-          </div>
-        </div>
       </div>
     </div>
     <div class="section">
       <div class="container">
+        <div class="button-container">
+          <a href="mailto:suryoadiguna@gmail.com?subject=Pertanyaan Seputar OCR Aksara Jawa" class="btn btn-primary btn-round btn-lg">Contact Me</a>
+        </div>
         <h3 class="title">Tentang Saya</h3>
         <h5 class="description">
           Seorang mahasiswa Teknik Komputer ITS yang suka memecahkan masalah, elektronik digital, 
